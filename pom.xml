@@ -1,0 +1,93 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Docker Testing Project</name>
+    <groupId>com.mikeycmccarthy</groupId>
+    <artifactId>docker-tested-app</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.wouterdanes.docker</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>build</id>
+                        <goals>
+                            <goal>build-images</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <id>atlas</id>
+                                    <files>
+                                        <file>${project.build.outputDirectory}/Dockerfile</file>
+                                    </files>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>start</id>
+                        <configuration>
+                            <containers>
+                                <container>
+                                    <id>Debian</id>
+                                    <image>debian:wheezy</image>
+                                </container>
+                                <container>
+                                    <id>BusyBox</id>
+                                    <image>busybox</image>
+                                </container>
+                                <container>
+                                    <id>Atlas</id>
+                                    <image>atlas</image>
+                                </container>
+                            </containers>
+                        </configuration>
+                        <goals>
+                            <goal>start-containers</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <goals>
+                            <goal>stop-containers</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
