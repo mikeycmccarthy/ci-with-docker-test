@@ -52,6 +52,7 @@
                                     <id>mikeytest</id>
                                     <files>
                                         <file>${project.build.outputDirectory}/Dockerfile</file>
+                                        <file>${project.build.directory}/${project.build.finalName}.jar</file>
                                     </files>
                                 </image>
                             </images>
