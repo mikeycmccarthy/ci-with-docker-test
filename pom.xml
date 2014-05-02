@@ -52,6 +52,7 @@
                                     <id>mikeytest</id>
                                     <files>
                                         <file>${project.build.outputDirectory}/Dockerfile</file>
+                                        <file>${project.build.directory}/${project.build.finalName}.jar</file>
                                     </files>
                                 </image>
                             </images>
@@ -61,14 +62,6 @@
                         <id>start</id>
                         <configuration>
                             <containers>
-                                <container>
-                                    <id>Debian</id>
-                                    <image>debian:wheezy</image>
-                                </container>
-                                <container>
-                                    <id>BusyBox</id>
-                                    <image>busybox</image>
-                                </container>
                                 <container>
                                     <id>Mikeytest</id>
                                     <image>mikeytest</image>
